@@ -1,4 +1,4 @@
-## Passing Angular scope attached variables into <template is="auto-binding"></template> element.
+## Passing Angular scope attached variables into <template is="auto-binding"></template> element. Check Plnkr https://plnkr.co/edit/yY9NlDC04KlDwPIEvMxu?p=preview
 
 Using template elements may prove to be extremely useful in many cases. 
 
