@@ -8,20 +8,23 @@ load).
 
 On top of this, polymer has brought auto-binding which gives you the power of databinding.
 
+```html
 <template is="auto-binding" id="greeter">
  Hello {{username}}!
 </template>
+```
 
 
 So in the script, we can bind username like below.
-
+```javascript
 var tmpl = document.querySelector('#tmpl');
 tmpl.username = 'Ganesh';
+```
 
 So on the page, you will automatically see Hello Ganesh!
 
 So with angularjs it's not that easy.
-
+```javascript
 var app = angular.module('app', []);
 app.controller('ctrl', function($scope){
 	$scope.model = {
@@ -29,20 +32,22 @@ app.controller('ctrl', function($scope){
 		}
 
 });
+```
 
 
 Now what you want to do is access this $scope.model inside the template as below,
-
+```html
 <template is="auto-binding" id="greeter">
  Hello {{model.username}}!
 </template>
+```
 
 But unfortunately, does't work!! Sad !!!
 
 Solution:
 I developed a simple but smart directive which does this for you.
 
-
+```javascript
  app.directive('copyFromNg', function($parse) {
   return {
     restrict: 'AE',
@@ -63,12 +68,14 @@ I developed a simple but smart directive which does this for you.
     template: ''
   };
 });
-
+```
 
 Now let's apply this angular directive to our template:
+```html
 <template is="auto-binding" id="greeter"  model="model" copy-from-ng   >
  Hello {{model.username}}!
 </template>
+```
 
 
 Bravo!! you see Hello Ganesh!, this time from angular scope.
