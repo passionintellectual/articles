@@ -44,7 +44,7 @@ Now what you want to do is access this $scope.model inside the template as below
 
 But unfortunately, does't work!! Sad !!!
 
-Solution:
+## Solution:
 I developed a simple but smart directive which does this for you.
 
 ```javascript
