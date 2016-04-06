@@ -1,7 +1,5 @@
 ## Passing Angular scope attached variables into <template is="auto-binding"></template> element.
 
-
-
 Using template elements may prove to be extremely useful in many cases. 
 
 They give you abiliy to insert inert and lazy loaded (meaning, e.g. images, scripts inside the template tags are not loadded on page 
