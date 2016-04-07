@@ -1,4 +1,4 @@
-## Passing Angular scope attached variables into <template is="auto-binding"></template> element. Check Plnkr https://plnkr.co/edit/Hm4oo3b5K75ptmPDqNY5?p=info
+## Passing Angular scope attached variables into <template is="auto-binding"></template> element. Check Plnkr https://plnkr.co/edit/Hm4oo3b5K75ptmPDqNY5?p=preview
 
 Using template elements may prove to be extremely useful in many cases. 
 
@@ -52,19 +52,20 @@ app.directive('copyFromNg', function($parse) {
   return {
     restrict: 'AE',
     link: function(scope, element, attrs) {
-      debugger;
       //var el = document.querySelector('#' + attrs.id);
       var el = element[0];
-      var keys = Object.keys(attrs.$attr);
-      var avoidKeys = ['copyFromNg', 'is', 'id'];
-      for (var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        if (avoidKeys.indexOf(key) > -1) {
-          continue;
+      window.addEventListener('WebComponentsReady', function() {
+        var keys = Object.keys(this.attrs.$attr);
+        var avoidKeys = ['copyFromNg', 'is', 'id'];
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          if (avoidKeys.indexOf(key) > -1) {
+            continue;
+          }
+          var value = $parse(this.attrs[key])(this.context) || this.attrs.$attr[key];
+          el[key] = value;
         }
-        var value = $parse(attrs[key])(scope) || attrs.$attr[key];
-        el[key] = value;
-      }
+      }.bind({context:scope, attrs:attrs, elem:el}));
     },
     template: ''
   };
