@@ -74,8 +74,13 @@ app.directive('copyFromNg', function($parse) {
 
 Now let's apply this angular directive to our template:
 ```html
-<template is="auto-binding" id="greeter"  model="model" copy-from-ng   >
- Hello {{model.username}}!
+<template is="auto-binding" id="greeter"  information="model" copy-from-ng   >
+ Hello {{information.username}}!
+</template>
+
+<!-- For polymer 1.x new version -->
+<template is="dom-bind" id="greeter"  information="model" copy-from-ng   >
+ Hello {{information.username}}!
 </template>
 ```
 
