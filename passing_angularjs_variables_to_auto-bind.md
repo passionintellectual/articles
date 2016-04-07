@@ -48,21 +48,22 @@ But unfortunately, does't work!! Sad !!!
 I developed a simple but smart directive which does this for you.
 
 ```javascript
- app.directive('copyFromNg', function($parse) {
+app.directive('copyFromNg', function($parse) {
   return {
     restrict: 'AE',
-    link:function(scope,element,attrs){
+    link: function(scope, element, attrs) {
       debugger;
-      var el = document.querySelector('#'+attrs.id);
-       var keys = Object.keys(attrs.$attr);
-      var avoidKeys=['mytemplate', 'is', 'id'];
+      //var el = document.querySelector('#' + attrs.id);
+      var el = element[0];
+      var keys = Object.keys(attrs.$attr);
+      var avoidKeys = ['copyFromNg', 'is', 'id'];
       for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
-        if(avoidKeys.indexOf(key) > -1){
+        if (avoidKeys.indexOf(key) > -1) {
           continue;
         }
         var value = $parse(attrs[key])(scope) || attrs.$attr[key];
-          el[key] = value ;
+        el[key] = value;
       }
     },
     template: ''
